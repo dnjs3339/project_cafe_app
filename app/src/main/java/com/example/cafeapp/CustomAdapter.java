@@ -1,5 +1,7 @@
 package com.example.cafeapp;
 
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -7,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -31,8 +34,9 @@ class CustomAdapter extends BaseAdapter
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent)
+    public View getView(final int position, View convertView, ViewGroup parent)
     {
+
         LayoutInflater inflater = ma.getLayoutInflater();
         View view = inflater.inflate(layout, null);
 
@@ -48,6 +52,7 @@ class CustomAdapter extends BaseAdapter
             {
                 currentShop.quantity++;
                 quantity.setText(String.valueOf(currentShop.quantity));
+                Intent intent = new Intent(ma.getApplicationContext(), ShopBasket.class);
             }
         });
 
