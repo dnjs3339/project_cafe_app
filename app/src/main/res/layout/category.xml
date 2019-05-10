@@ -28,7 +28,7 @@
 
             <Button
                 android:background="@drawable/coffe"
-                android:id="@+id/cof"
+                android:id="@+id/coffee"
                 android:layout_gravity="bottom"
                 android:text="coffee"
                 android:layout_width="wrap_content"
@@ -43,7 +43,7 @@
 
             <Button
                 android:background="@drawable/beverage"
-                android:id="@+id/bev"
+                android:id="@+id/juice"
                 android:layout_gravity="top"
                 android:text="beverage"
                 android:layout_width="wrap_content"
@@ -51,7 +51,7 @@
 
             <Button
                 android:background="@drawable/cake"
-                android:id="@+id/des"
+                android:id="@+id/food"
                 android:layout_gravity="top"
                 android:text="desert"
                 android:layout_width="wrap_content"

@@ -10,9 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".BeverActivity"> </activity>
-        <activity android:name=".CoffeeActivity"></activity>
-        <activity android:name=".DesertActivity"></activity>
+        <activity android:name=".Menu"></activity>
 
         <activity android:name=".MainActivity">
             <intent-filter>

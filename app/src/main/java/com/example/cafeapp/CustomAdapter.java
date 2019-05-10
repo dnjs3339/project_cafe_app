@@ -9,11 +9,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 class CustomAdapter extends BaseAdapter
 {
     Menu  ma;
     int layout;
     Shop[] data;
+
     CustomAdapter(Menu ma, int layout, Shop[] datas)
     {
         this.ma = ma;
