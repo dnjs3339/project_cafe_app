@@ -1,6 +1,9 @@
 package com.example.cafeapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.io.ByteArrayOutputStream;
 
 public class Menu extends AppCompatActivity
 {
@@ -27,6 +32,7 @@ public class Menu extends AppCompatActivity
 
         //여러 메뉴 세팅
 
+
                 final Shop c1 = new Shop(R.drawable.camericano, "아메리카노", 0);
                 final Shop c2 = new Shop(R.drawable.ccafemoca, "카페모카", 0);
                 final Shop c3 = new Shop(R.drawable.ccapuchino, "카푸치노", 0);
@@ -36,6 +42,7 @@ public class Menu extends AppCompatActivity
                 final Shop c7 = new Shop(R.drawable.cnightrochocolat, "나이트로 쇼콜라", 0);
                 final Shop c8 = new Shop(R.drawable.cnightrochocolatcloud, "나이트로 쇼콜라 클라우드", 0);
                 final Shop[] coffee ={c1,c2,c3,c4,c5,c6,c7,c8};
+
 
                 final Shop j1 = new Shop(R.drawable.jchocolatecreamfurapuccino, "초콜렛 크림 프라푸치노", 0);
                 final Shop j2 = new Shop(R.drawable.jwhitechocolatefurapuccino, "화이트 초코 프라푸치노", 0);
@@ -58,7 +65,7 @@ public class Menu extends AppCompatActivity
                 final Shop[] food ={f1,f2,f3,f4,f5,f6,f7,f8};
 
         //리스트 불러오기
-        ListView listView = findViewById(R.id.list_view);
+        final ListView listView = findViewById(R.id.list_view);
         switch(flag.Get_flag())
         {
             case 'c':
@@ -95,9 +102,15 @@ public class Menu extends AppCompatActivity
                 {
                     if(coffee[i].quantity != 0)
                     {
-                        basket.putExtra("coffeeimg", coffee[i].img);        //  bitmap ㅈㄹ 해야됨
-                        basket.putExtra("coffeename", coffee[i].name);
-                        basket.putExtra("coffeequantity", coffee[i].quantity);
+                        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), coffee[i].img);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] coffeeimage = stream.toByteArray();
+                        basket.putExtra("coffeeimg", coffeeimage);
+
+                       // basket.putExtra("coffeeimg" + String.valueOf(cmenuquantity), coffeeimage);
+                        basket.putExtra("coffeename" + String.valueOf(cmenuquantity), coffee[i].name);
+                        basket.putExtra("coffeequantity" + String.valueOf(cmenuquantity), coffee[i].quantity);
                         cmenuquantity++;
                     }
                 }
@@ -106,6 +119,11 @@ public class Menu extends AppCompatActivity
                 {
                     if(juice[i].quantity != 0)
                     {
+                       /* Bitmap bitmap = BitmapFactory.decodeResource(getResources(), juice[i].img);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] juiceimage = stream.toByteArray();*/
+
                         basket.putExtra("juiceimg", juice[i].img);
                         basket.putExtra("juicename", juice[i].name);
                         basket.putExtra("juicequantity", juice[i].quantity);
@@ -117,9 +135,14 @@ public class Menu extends AppCompatActivity
                 {
                     if(food[i].quantity != 0)
                     {
-                        basket.putExtra("foodimg", food[i].img);
-                        basket.putExtra("foodname", food[i].name);
-                        basket.putExtra("foodquantity", food[i].quantity);
+                        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), food[i].img);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] foodimage = stream.toByteArray();
+
+                        basket.putExtra("foodimg" + Integer.toString(fmenuquantity), foodimage);
+                        basket.putExtra("foodname" + String.valueOf(fmenuquantity), food[i].name);
+                        basket.putExtra("foodquantity" + String.valueOf(fmenuquantity), food[i].quantity);
                         fmenuquantity++;
                     }
                 }

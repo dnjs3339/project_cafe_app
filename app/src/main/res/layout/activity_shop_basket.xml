@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             android:layout_gravity="bottom"
             android:background="#af0000"
-            android:text="장바구니 넣기"/>
+            android:text="주문하기"/>
 
     </LinearLayout>
 
