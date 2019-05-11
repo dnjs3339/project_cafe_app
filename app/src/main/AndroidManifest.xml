@@ -11,6 +11,7 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".Menu"></activity>
+        <activity android:name=".ShopBasket"></activity>
 
         <activity android:name=".MainActivity">
             <intent-filter>

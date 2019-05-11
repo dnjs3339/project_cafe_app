@@ -35,7 +35,7 @@ public class Menu extends AppCompatActivity
                 final Shop c6 = new Shop(R.drawable.cespresso, "에스프레소", 0);
                 final Shop c7 = new Shop(R.drawable.cnightrochocolat, "나이트로 쇼콜라", 0);
                 final Shop c8 = new Shop(R.drawable.cnightrochocolatcloud, "나이트로 쇼콜라 클라우드", 0);
-                Shop[] coffee ={c1,c2,c3,c4,c5,c6,c7,c8};
+                final Shop[] coffee ={c1,c2,c3,c4,c5,c6,c7,c8};
 
                 final Shop j1 = new Shop(R.drawable.jchocolatecreamfurapuccino, "초콜렛 크림 프라푸치노", 0);
                 final Shop j2 = new Shop(R.drawable.jwhitechocolatefurapuccino, "화이트 초코 프라푸치노", 0);
@@ -45,7 +45,7 @@ public class Menu extends AppCompatActivity
                 final Shop j6 = new Shop(R.drawable.jpinkjamongpizio, "핑크 자몽 피지오", 0);
                 final Shop j7 = new Shop(R.drawable.jstrawberryyogurtblended, "딸기 요거트 블랜디드", 0);
                 final Shop j8 = new Shop(R.drawable.jabocadoblended, "아보카도 블랜디드", 0);
-                Shop[] juice = {j1,j2,j3,j4,j5,j6,j7,j8};
+                final Shop[] juice = {j1,j2,j3,j4,j5,j6,j7,j8};
 
                 final Shop f1 = new Shop(R.drawable.fbagle, "허니 버터 베이글", 0);
                 final Shop f2 = new Shop(R.drawable.fcake, "치즈 조각 케이크", 0);
@@ -55,7 +55,7 @@ public class Menu extends AppCompatActivity
                 final Shop f6 = new Shop(R.drawable.frole, "소시지 롤", 0);
                 final Shop f7 = new Shop(R.drawable.fscone, "클레식 스콘", 0);
                 final Shop f8 = new Shop(R.drawable.fstick, "클레식 스틱", 0);
-                Shop[] food ={f1,f2,f3,f4,f5,f6,f7,f8};
+                final Shop[] food ={f1,f2,f3,f4,f5,f6,f7,f8};
 
         //리스트 불러오기
         ListView listView = findViewById(R.id.list_view);
@@ -83,11 +83,53 @@ public class Menu extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent basket = new Intent(Menu.this, ShopBasket.class);
+                Intent basket = new Intent(getApplicationContext(), ShopBasket.class);
 
-                //해야하는 것
-                basket.putExtra("quantity", c1.quantity);
-                startActivity(basket);
+                // 주문할 물건 장바구니로 넣어주기
+
+                int cmenuquantity = 0;
+                int jmenuquantity = 0;
+                int fmenuquantity = 0;
+
+                for(int i = 0; i < coffee.length; i++)
+                {
+                    if(coffee[i].quantity != 0)
+                    {
+                        basket.putExtra("coffeeimg", coffee[i].img);        //  bitmap ㅈㄹ 해야됨
+                        basket.putExtra("coffeename", coffee[i].name);
+                        basket.putExtra("coffeequantity", coffee[i].quantity);
+                        cmenuquantity++;
+                    }
+                }
+
+                for(int i = 0; i < juice.length; i++)
+                {
+                    if(juice[i].quantity != 0)
+                    {
+                        basket.putExtra("juiceimg", juice[i].img);
+                        basket.putExtra("juicename", juice[i].name);
+                        basket.putExtra("juicequantity", juice[i].quantity);
+                        jmenuquantity++;
+                    }
+                }
+
+                for(int i = 0; i < food.length; i++)
+                {
+                    if(food[i].quantity != 0)
+                    {
+                        basket.putExtra("foodimg", food[i].img);
+                        basket.putExtra("foodname", food[i].name);
+                        basket.putExtra("foodquantity", food[i].quantity);
+                        fmenuquantity++;
+                    }
+                }
+
+                //총 메뉴 숫자
+                basket.putExtra("cmenuquan", cmenuquantity);
+                basket.putExtra("jmenuquan", jmenuquantity);
+                basket.putExtra("fmenuquan", fmenuquantity);
+
+               startActivity(basket);
             }
         });
     }
