@@ -95,9 +95,8 @@ public class Menu extends AppCompatActivity
                 {
                     if(coffee[i].quantity != 0)
                     {
-                        basket.putExtra("coffeeimg", coffee[i].img);        //  bitmap ㅈㄹ 해야됨
-                        basket.putExtra("coffeename", coffee[i].name);
-                        basket.putExtra("coffeequantity", coffee[i].quantity);
+                        basket.putExtra("coffee" + cmenuquantity + "", i);
+                        basket.putExtra("coffeequantity" + cmenuquantity + "", coffee[i].quantity);
                         cmenuquantity++;
                     }
                 }
@@ -106,9 +105,8 @@ public class Menu extends AppCompatActivity
                 {
                     if(juice[i].quantity != 0)
                     {
-                        basket.putExtra("juiceimg", juice[i].img);
-                        basket.putExtra("juicename", juice[i].name);
-                        basket.putExtra("juicequantity", juice[i].quantity);
+                        basket.putExtra("juice" + jmenuquantity + "", i);
+                        basket.putExtra("juicequantity" + jmenuquantity + "", juice[i].quantity);
                         jmenuquantity++;
                     }
                 }
@@ -117,9 +115,8 @@ public class Menu extends AppCompatActivity
                 {
                     if(food[i].quantity != 0)
                     {
-                        basket.putExtra("foodimg", food[i].img);
-                        basket.putExtra("foodname", food[i].name);
-                        basket.putExtra("foodquantity", food[i].quantity);
+                        basket.putExtra("food" + fmenuquantity + "", i);
+                        basket.putExtra("foodquantity" + fmenuquantity + "", food[i].quantity);
                         fmenuquantity++;
                     }
                 }
