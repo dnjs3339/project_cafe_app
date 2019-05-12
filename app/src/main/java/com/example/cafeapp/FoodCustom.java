@@ -1,28 +1,22 @@
 package com.example.cafeapp;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import java.util.ArrayList;
-
-class CustomAdapter extends BaseAdapter
+public class FoodCustom extends BaseAdapter
 {
-    Menu  ma;
+    FoodMenu  fm;
     int layout;
     Shop[] data;
 
-    CustomAdapter(Menu ma, int layout, Shop[] datas)
+    FoodCustom(FoodMenu fm, int layout, Shop[] datas)
     {
-        this.ma = ma;
+        this.fm = fm;
         this.layout = layout;
         this.data = datas;
     }
@@ -34,10 +28,9 @@ class CustomAdapter extends BaseAdapter
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent)
+    public View getView(int position, View convertView, ViewGroup parent)
     {
-
-        LayoutInflater inflater = ma.getLayoutInflater();
+        LayoutInflater inflater = fm.getLayoutInflater();
         View view = inflater.inflate(layout, null);
 
         //버튼 누르면 박스 안 숫자 바꿔주기
@@ -81,14 +74,14 @@ class CustomAdapter extends BaseAdapter
     }
 
     @Override
-    public Object getItem(int position)
-    {
+    public Object getItem(int position) {
         return null;
     }
 
     @Override
-    public long getItemId(int position)
-    {
+    public long getItemId(int position) {
         return 0;
     }
+
+
 }
