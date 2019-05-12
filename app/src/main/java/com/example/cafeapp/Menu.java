@@ -1,6 +1,9 @@
 package com.example.cafeapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +16,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.io.ByteArrayOutputStream;
+
 public class Menu extends AppCompatActivity
 {
 
@@ -22,43 +27,44 @@ public class Menu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
 
+        //여러 메뉴 세팅
+
+
+        final Shop c1 = new Shop(R.drawable.camericano, "아메리카노", 0);
+        final Shop c2 = new Shop(R.drawable.ccafemoca, "카페모카", 0);
+        final Shop c3 = new Shop(R.drawable.ccapuchino, "카푸치노", 0);
+        final Shop c4 = new Shop(R.drawable.ccaramelmacchiato, "캐러멜 마키아또", 0);
+        final Shop c5 = new Shop(R.drawable.ccoldbrew, "콜드 브루", 0);
+        final Shop c6 = new Shop(R.drawable.cespresso, "에스프레소", 0);
+        final Shop c7 = new Shop(R.drawable.cnightrochocolat, "나이트로 쇼콜라", 0);
+        final Shop c8 = new Shop(R.drawable.cnightrochocolatcloud, "나이트로 쇼콜라 클라우드", 0);
+        final Shop[] coffee ={c1,c2,c3,c4,c5,c6,c7,c8};
+
+        final Shop j1 = new Shop(R.drawable.jchocolatecreamfurapuccino, "초콜렛 크림 프라푸치노", 0);
+        final Shop j2 = new Shop(R.drawable.jwhitechocolatefurapuccino, "화이트 초코 프라푸치노", 0);
+        final Shop j3 = new Shop(R.drawable.jgreentea, "아이스 그린 티", 0);
+        final Shop j4 = new Shop(R.drawable.jlemonminttea, "레몬 민트 차", 0);
+        final Shop j5 = new Shop(R.drawable.jmangoblended, "망고 블랜디드", 0);
+        final Shop j6 = new Shop(R.drawable.jpinkjamongpizio, "핑크 자몽 피지오", 0);
+        final Shop j7 = new Shop(R.drawable.jstrawberryyogurtblended, "딸기 요거트 블랜디드", 0);
+        final Shop j8 = new Shop(R.drawable.jabocadoblended, "아보카도 블랜디드", 0);
+        final Shop[] juice = {j1,j2,j3,j4,j5,j6,j7,j8};
+
+        final Shop f1 = new Shop(R.drawable.fbagle, "허니 버터 베이글", 0);
+        final Shop f2 = new Shop(R.drawable.fcake, "치즈 조각 케이크", 0);
+        final Shop f3 = new Shop(R.drawable.fchocolatemurffin, "아몬드 초코 머핀", 0);
+        final Shop f4 = new Shop(R.drawable.fcroissant, "녹차 딸기 크로와상", 0);
+        final Shop f5 = new Shop(R.drawable.fpuding, "바닐라 푸딩", 0);
+        final Shop f6 = new Shop(R.drawable.frole, "소시지 롤", 0);
+        final Shop f7 = new Shop(R.drawable.fscone, "클레식 스콘", 0);
+        final Shop f8 = new Shop(R.drawable.fstick, "클레식 스틱", 0);
+        final Shop[] food ={f1,f2,f3,f4,f5,f6,f7,f8};
+
         Intent intent = getIntent();    //추가
         Flag_num flag = (Flag_num) intent.getSerializableExtra("flag");
 
-        //여러 메뉴 세팅
-
-                final Shop c1 = new Shop(R.drawable.camericano, "아메리카노", 0);
-                final Shop c2 = new Shop(R.drawable.ccafemoca, "카페모카", 0);
-                final Shop c3 = new Shop(R.drawable.ccapuchino, "카푸치노", 0);
-                final Shop c4 = new Shop(R.drawable.ccaramelmacchiato, "캐러멜 마키아또", 0);
-                final Shop c5 = new Shop(R.drawable.ccoldbrew, "콜드 브루", 0);
-                final Shop c6 = new Shop(R.drawable.cespresso, "에스프레소", 0);
-                final Shop c7 = new Shop(R.drawable.cnightrochocolat, "나이트로 쇼콜라", 0);
-                final Shop c8 = new Shop(R.drawable.cnightrochocolatcloud, "나이트로 쇼콜라 클라우드", 0);
-                final Shop[] coffee ={c1,c2,c3,c4,c5,c6,c7,c8};
-
-                final Shop j1 = new Shop(R.drawable.jchocolatecreamfurapuccino, "초콜렛 크림 프라푸치노", 0);
-                final Shop j2 = new Shop(R.drawable.jwhitechocolatefurapuccino, "화이트 초코 프라푸치노", 0);
-                final Shop j3 = new Shop(R.drawable.jgreentea, "아이스 그린 티", 0);
-                final Shop j4 = new Shop(R.drawable.jlemonminttea, "레몬 민트 차", 0);
-                final Shop j5 = new Shop(R.drawable.jmangoblended, "망고 블랜디드", 0);
-                final Shop j6 = new Shop(R.drawable.jpinkjamongpizio, "핑크 자몽 피지오", 0);
-                final Shop j7 = new Shop(R.drawable.jstrawberryyogurtblended, "딸기 요거트 블랜디드", 0);
-                final Shop j8 = new Shop(R.drawable.jabocadoblended, "아보카도 블랜디드", 0);
-                final Shop[] juice = {j1,j2,j3,j4,j5,j6,j7,j8};
-
-                final Shop f1 = new Shop(R.drawable.fbagle, "허니 버터 베이글", 0);
-                final Shop f2 = new Shop(R.drawable.fcake, "치즈 조각 케이크", 0);
-                final Shop f3 = new Shop(R.drawable.fchocolatemurffin, "아몬드 초코 머핀", 0);
-                final Shop f4 = new Shop(R.drawable.fcroissant, "녹차 딸기 크로와상", 0);
-                final Shop f5 = new Shop(R.drawable.fpuding, "바닐라 푸딩", 0);
-                final Shop f6 = new Shop(R.drawable.frole, "소시지 롤", 0);
-                final Shop f7 = new Shop(R.drawable.fscone, "클레식 스콘", 0);
-                final Shop f8 = new Shop(R.drawable.fstick, "클레식 스틱", 0);
-                final Shop[] food ={f1,f2,f3,f4,f5,f6,f7,f8};
-
         //리스트 불러오기
-        ListView listView = findViewById(R.id.list_view);
+        final ListView listView = findViewById(R.id.list_view);
         switch(flag.Get_flag())
         {
             case 'c':
@@ -83,7 +89,8 @@ public class Menu extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
-                Intent basket = new Intent(getApplicationContext(), ShopBasket.class);
+                Intent basket = new Intent(Menu.this, ShopBasket.class);
+               // Intent basketimg = new Intent(Menu.this, FinalOrder.class);
 
                 // 주문할 물건 장바구니로 넣어주기
 
@@ -91,12 +98,33 @@ public class Menu extends AppCompatActivity
                 int jmenuquantity = 0;
                 int fmenuquantity = 0;
 
+                Bundle bundle = new Bundle();
+
                 for(int i = 0; i < coffee.length; i++)
                 {
                     if(coffee[i].quantity != 0)
                     {
-                        basket.putExtra("coffee" + cmenuquantity + "", i);
-                        basket.putExtra("coffeequantity" + cmenuquantity + "", coffee[i].quantity);
+                        /*ImageView imageView = findViewById(R.id.coffee);
+                        imageView.buildDrawingCache();
+                        Bitmap bitmap = imageView.getDrawingCache();
+
+                        Bundle bundle = new Bundle();
+                        bundle.putParcelable('c' + String.valueOf(cmenuquantity),bitmap);
+                        basketimg.putExtras(bundle);*/
+
+                       /* basket.putExtra("ci" + cmenuquantity, coffee[i].img);
+                        basket.putExtra("cn" + cmenuquantity, coffee[i].name);
+                        basket.putExtra("cq" + cmenuquantity, coffee[i].quantity);*/
+
+                        /*bundle.putInt("ci" + cmenuquantity, coffee[i].img);
+                        bundle.putString("cn" + cmenuquantity, coffee[i].name);
+                        bundle.putInt("cq" + cmenuquantity, coffee[i].quantity);*/
+
+                        basket.putExtra(String.valueOf(cmenuquantity), i);
+                        basket.putExtra(String.valueOf(cmenuquantity + 100), coffee[i].quantity);
+
+                       // basket.putExtra("bundle",bundle);
+                        //basket.putExtra("cmenuquan", cmenuquantity);
                         cmenuquantity++;
                     }
                 }
@@ -105,8 +133,14 @@ public class Menu extends AppCompatActivity
                 {
                     if(juice[i].quantity != 0)
                     {
-                        basket.putExtra("juice" + jmenuquantity + "", i);
-                        basket.putExtra("juicequantity" + jmenuquantity + "", juice[i].quantity);
+                       /* Bitmap bitmap = BitmapFactory.decodeResource(getResources(), juice[i].img);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] juiceimage = stream.toByteArray();*/
+
+                        basket.putExtra("juiceimg", juice[i].img);
+                        basket.putExtra("juicename", juice[i].name);
+                        basket.putExtra("juicequantity", juice[i].quantity);
                         jmenuquantity++;
                     }
                 }
@@ -115,14 +149,20 @@ public class Menu extends AppCompatActivity
                 {
                     if(food[i].quantity != 0)
                     {
-                        basket.putExtra("food" + fmenuquantity + "", i);
-                        basket.putExtra("foodquantity" + fmenuquantity + "", food[i].quantity);
+                        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), food[i].img);
+                        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                        byte[] foodimage = stream.toByteArray();
+
+                        basket.putExtra("foodimg" + Integer.toString(fmenuquantity), foodimage);
+                        basket.putExtra("foodname" + String.valueOf(fmenuquantity), food[i].name);
+                        basket.putExtra("foodquantity" + String.valueOf(fmenuquantity), food[i].quantity);
                         fmenuquantity++;
                     }
                 }
 
                 //총 메뉴 숫자
-                basket.putExtra("cmenuquan", cmenuquantity);
+                //basket.putExtra("cmenuquan", cmenuquantity);
                 basket.putExtra("jmenuquan", jmenuquantity);
                 basket.putExtra("fmenuquan", fmenuquantity);
 

@@ -42,7 +42,7 @@ class CustomAdapter extends BaseAdapter
 
         //버튼 누르면 박스 안 숫자 바꿔주기
         final Shop currentShop = data[position];
-        final EditText quantity = view.findViewById(R.id.num);
+        final TextView quantity = view.findViewById(R.id.num);
 
         Button btnUp = view.findViewById(R.id.up);
         btnUp.setOnClickListener(new View.OnClickListener()
@@ -52,11 +52,10 @@ class CustomAdapter extends BaseAdapter
             {
                 currentShop.quantity++;
                 quantity.setText(String.valueOf(currentShop.quantity));
-                Intent intent = new Intent(ma.getApplicationContext(), ShopBasket.class);
             }
         });
 
-        Button btnDown = view.findViewById(R.id.down);
+        final Button btnDown = view.findViewById(R.id.down);
         btnDown.setOnClickListener(new View.OnClickListener()
         {
             @Override

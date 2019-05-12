@@ -9,10 +9,11 @@ import android.widget.TextView;
 
 public class FinalOrder extends BaseAdapter
 {
-    ShopBasket sb;
-    int layout;
-    Shop[] data;
+    public ShopBasket sb;
+    public int layout;
+    public Shop[] data;
 
+    public
     FinalOrder(ShopBasket sb, int layout, Shop[] data)
     {
         this.sb = sb;
@@ -35,6 +36,7 @@ public class FinalOrder extends BaseAdapter
         //리스트별 이미지 바꿔주기
         ImageView img = view.findViewById(R.id.cimg);
         img.setImageResource(data[position].img);
+        //img.setImageBitmap(data[position].getImg());
 
         //리스트별 이름 바꿔주기
         TextView textView = view.findViewById(R.id.cname);
@@ -57,4 +59,5 @@ public class FinalOrder extends BaseAdapter
     {
         return 0;
     }
+
 }
