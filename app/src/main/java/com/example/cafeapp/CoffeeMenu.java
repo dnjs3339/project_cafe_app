@@ -43,6 +43,7 @@ public class CoffeeMenu extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                cmenuquantity = 0;
                 for(int i = 0; i < coffee.length; i++)
                 {
                     if(coffee[i].quantity != 0)

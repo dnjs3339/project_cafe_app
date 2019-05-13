@@ -67,22 +67,38 @@ public class ShopBasket extends AppCompatActivity
         // 관련 c : 커피, j : 음료, f : 음식 으로 묶고
         // 순서는 이미지, 메뉴, 수량, 해당
 
+        //if 문으로 제어하기 if (0 < cm && jm == 0 && fm == 0) 처럼
+        //함수하나 만들어서 변수만 집어넣으면 알아서 출력되게 만들기
+
+
+
         for(int i = 0; i < cmenuquantity; i++)
         {
-            total[i] = coffee[sharepreference.getInt("coffee" + i + "", 0)];
-            total[i].quantity = sharepreference.getInt("coffeequantity" + i + "", 0);
+            DefineTotal definecoffee = new DefineTotal();
+            definecoffee.defineTotal(total, coffee, i, sharepreference.getInt("coffee" + i + "", 0), sharepreference.getInt("coffeequantity" + i + "", 0));
+
+            /*total[i] = coffee[sharepreference.getInt("coffee" + i + "", 0)];
+            total[i].quantity = sharepreference.getInt("coffeequantity" + i + "", 0);*/
         }
 
         for(int i = cmenuquantity; i < cmenuquantity + jmenuquantity; i++)
         {
-            total[i] = juice[sharepreference.getInt("juice" + i + "", 0)];
-            total[i].quantity = sharepreference.getInt("juicequantity" + i + "", 0);
+            DefineTotal definejuice = new DefineTotal();
+            definejuice.defineTotal(total, juice, i, sharepreference.getInt("juice" + i + "", 0), sharepreference.getInt("juicequantity" + i + "", 0));
+
+
+            /*total[i] = juice[sharepreference.getInt("juice" + i + "", 0)];
+            total[i].quantity = sharepreference.getInt("juicequantity" + i + "", 0);*/
         }
 
         for(int i = cmenuquantity + jmenuquantity; i < cmenuquantity + jmenuquantity + fmenuquantity; i++)
         {
-            total[i] = food[sharepreference.getInt("food" + i + "", 0)];
-            total[i].quantity = sharepreference.getInt("foodquantity" + i + "", 0);
+            DefineTotal definefood = new DefineTotal();
+            definefood.defineTotal(total, food, i, sharepreference.getInt("coffee" + i + "", 0), sharepreference.getInt("coffeequantity" + i + "", 0));
+
+
+            /*total[i] = food[sharepreference.getInt("food" + i + "", 0)];
+            total[i].quantity = sharepreference.getInt("foodquantity" + i + "", 0);*/
         }
 
         /*for(int i = sharepreference.getInt("total",0); i < sharepreference.getInt("total",0) + cmenuquantity; i++)

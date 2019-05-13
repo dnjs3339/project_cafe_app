@@ -43,6 +43,7 @@ public class JuiceMenu extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                jmenuquantity = 0;
                 for(int i = 0; i < juice.length; i++)
                 {
                     if(juice[i].quantity != 0)

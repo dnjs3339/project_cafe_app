@@ -42,6 +42,7 @@ public class FoodMenu extends AppCompatActivity
             @Override
             public void onClick(View v)
             {
+                fmenuquantity = 0;
                 for(int i = 0; i < food.length; i++)
                 {
                     if(food[i].quantity != 0)
