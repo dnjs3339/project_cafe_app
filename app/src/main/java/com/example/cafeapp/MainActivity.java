@@ -12,17 +12,13 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.category);
-       // final Flag_num flag = new Flag_num();
         //커피
         Button btn_coffee = findViewById(R.id.coffee);
         btn_coffee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, CoffeeMenu.class);
+                Intent intent = new Intent(MainActivity.this, CoffeeMenu.class);        //커피 선택시 커피 메뉴 이동
 
-               // flag.Set_flag('c');
-
-               // intent.putExtra("flag", flag);  //추가
                 startActivity(intent);
             }
         });
@@ -33,11 +29,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(MainActivity.this, JuiceMenu.class);
+                Intent intent = new Intent(MainActivity.this, JuiceMenu.class);         //쥬스 선택시 쥬스 메뉴 이동
 
-                // flag.Set_flag('j');
-
-                // intent.putExtra("flag", flag);  //추가
                 startActivity(intent);
             }
         });
@@ -47,11 +40,8 @@ public class MainActivity extends AppCompatActivity {
         btn_food.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, FoodMenu.class);
+                Intent intent = new Intent(MainActivity.this, FoodMenu.class);          //디저트 선택시 디저트 메뉴 이동
 
-               // flag.Set_flag('f');
-
-                //intent.putExtra("flag", flag);  //추가
                 startActivity(intent);
             }
         });

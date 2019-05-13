@@ -12,7 +12,6 @@
         <activity android:name=".FoodMenu"></activity>
         <activity android:name=".JuiceMenu" />
         <activity android:name=".CoffeeMenu" />
-        <activity android:name=".Menu" />
         <activity android:name=".ShopBasket" />
         <activity android:name=".MainActivity">
             <intent-filter>

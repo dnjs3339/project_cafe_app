@@ -6,9 +6,9 @@ import static android.content.Context.MODE_PRIVATE;
 
 public class DefineTotal
 {
-    public void defineTotal(Shop[] total, Shop[] cjm, int start_i, int num, int qua)
+    public void defineTotal(Shop[] total, Shop[] cjf, int start_i, int num, int qua)
     {
-            total[start_i] = cjm[num];
-            total[start_i].quantity = qua;
+            total[start_i] = cjf[num];                      // 선택한 coffee,juice,food 를 total 에 넣기
+            total[start_i].quantity = qua;                  // 선택한 coffee,juice,food 의 수량을 total 의 수량에 넣기
     }
 }
