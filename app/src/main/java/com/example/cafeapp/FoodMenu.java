@@ -18,8 +18,8 @@ public class FoodMenu extends AppCompatActivity
         setContentView(R.layout.menu);
 
         final ListView listView = findViewById(R.id.list_view);
-        final SharedPreferences sharepreference = getSharedPreferences("cart", MODE_PRIVATE);       // 밑의 것을 쓰기 위해 사용
-        final SharedPreferences.Editor editor = sharepreference.edit();                                     //해당 값을 앱에 저장
+        final SharedPreferences sharefood = getSharedPreferences("cart", MODE_PRIVATE);       // 밑의 것을 쓰기 위해 사용
+        final SharedPreferences.Editor editor = sharefood.edit();                                     //해당 값을 앱에 저장
 
         final Shop f1 = new Shop(R.drawable.fbagle, "허니 버터 베이글", 0);
         final Shop f2 = new Shop(R.drawable.fcake, "치즈 조각 케이크", 0);
@@ -56,11 +56,6 @@ public class FoodMenu extends AppCompatActivity
                 editor.putInt("fq", fmenuquantity);                                                 // 선택한 디저트 종류의 수 넘기기
                 editor.commit();                // 값 저장하기(안쓰면 저장 안됨)
 
-                if(fmenuquantity == 0)          //추후에 장바구니 비우기로 옮김
-                {
-                    editor.clear();
-                    editor.commit();
-                }
                 startActivity(basket);
             }
         });

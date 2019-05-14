@@ -19,8 +19,8 @@ public class JuiceMenu extends AppCompatActivity
         setContentView(R.layout.menu);
 
         final ListView listView = findViewById(R.id.list_view);
-        final SharedPreferences sharepreference = getSharedPreferences("cart", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = sharepreference.edit();
+        final SharedPreferences sharejuice = getSharedPreferences("cart", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharejuice.edit();
 
         final Shop j1 = new Shop(R.drawable.jchocolatecreamfurapuccino, "초콜렛 크림 프라푸치노", 0);
         final Shop j2 = new Shop(R.drawable.jwhitechocolatefurapuccino, "화이트 초코 프라푸치노", 0);
@@ -57,11 +57,6 @@ public class JuiceMenu extends AppCompatActivity
                 editor.putInt("jq", jmenuquantity);
                 editor.commit();
 
-                if(jmenuquantity == 0)
-                {
-                    editor.clear();
-                    editor.commit();
-                }
                 startActivity(basket);
             }
         });

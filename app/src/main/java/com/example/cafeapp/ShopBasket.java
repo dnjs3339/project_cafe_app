@@ -6,6 +6,8 @@ import android.graphics.Bitmap;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.io.ByteArrayOutputStream;
@@ -14,20 +16,18 @@ import static java.lang.Integer.valueOf;
 
 public class ShopBasket extends AppCompatActivity
 {
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop_basket);
 
-        SharedPreferences sharepreference = getSharedPreferences("cart", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharepreference.edit();
+        final SharedPreferences sharepreference = getSharedPreferences("cart", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharepreference.edit();
 
         int cmenuquantity = sharepreference.getInt("cq", 0);
         int jmenuquantity = sharepreference.getInt("jq", 0);
         int fmenuquantity = sharepreference.getInt("fq", 0);
-        int totalquantity = 0;
 
         Shop[] total = new Shop[cmenuquantity + jmenuquantity + fmenuquantity];            //배열 초기화
 
@@ -70,17 +70,12 @@ public class ShopBasket extends AppCompatActivity
         //if 문으로 제어하기 if (0 < cm && jm == 0 && fm == 0) 처럼
         //함수하나 만들어서 변수만 집어넣으면 알아서 출력되게 만들기
 
-
-
         for(int i = 0; i < cmenuquantity; i++)                                                 // 선택한 커피 메뉴만큼 반복하기
         {
             DefineTotal definecoffee = new DefineTotal();
             definecoffee.defineTotal(total, coffee, i,
                     sharepreference.getInt("coffee" + i + "", 0),               // 선택한 커피 메뉴를 total 에 넣기
                     sharepreference.getInt("coffeequantity" + i + "", 0));      // 선택한 커피 메뉴의 수량을 total.quantity 에 넣기
-
-            /*total[i] = coffee[sharepreference.getInt("coffee" + i + "", 0)];
-            total[i].quantity = sharepreference.getInt("coffeequantity" + i + "", 0);*/
         }
 
         for(int i = 0; i < jmenuquantity; i++)
@@ -88,17 +83,18 @@ public class ShopBasket extends AppCompatActivity
             if(cmenuquantity != 0)
             {
                 DefineTotal definejuice = new DefineTotal();
-                definejuice.defineTotal(total, juice, i + cmenuquantity, sharepreference.getInt("juice" + i + "", 0), sharepreference.getInt("juicequantity" + i + "", 0));
+                definejuice.defineTotal(total, juice, i + cmenuquantity,
+                        sharepreference.getInt("juice" + i + "", 0),
+                        sharepreference.getInt("juicequantity" + i + "", 0));
             }
 
             else
             {
                 DefineTotal definejuice = new DefineTotal();
-                definejuice.defineTotal(total, juice, i, sharepreference.getInt("juice" + i + "", 0), sharepreference.getInt("juicequantity" + i + "", 0));
+                definejuice.defineTotal(total, juice, i,
+                        sharepreference.getInt("juice" + i + "", 0),
+                        sharepreference.getInt("juicequantity" + i + "", 0));
             }
-
-            /*total[i] = juice[sharepreference.getInt("juice" + i + "", 0)];
-            total[i].quantity = sharepreference.getInt("juicequantity" + i + "", 0);*/
         }
 
         for(int i = 0; i < fmenuquantity; i++)
@@ -106,61 +102,52 @@ public class ShopBasket extends AppCompatActivity
             if(cmenuquantity == 0 && jmenuquantity == 0)
             {
                 DefineTotal definefood = new DefineTotal();
-                definefood.defineTotal(total, food, i, sharepreference.getInt("food" + i + "", 0), sharepreference.getInt("foodquantity" + i + "", 0));
+                definefood.defineTotal(total, food, i,
+                        sharepreference.getInt("food" + i + "", 0),
+                        sharepreference.getInt("foodquantity" + i + "", 0));
             }
 
             else if(cmenuquantity != 0 && jmenuquantity == 0)
             {
                 DefineTotal definefood = new DefineTotal();
-                definefood.defineTotal(total, food, i + cmenuquantity, sharepreference.getInt("food" + i + "", 0), sharepreference.getInt("foodquantity" + i + "", 0));
+                definefood.defineTotal(total, food, i + cmenuquantity,
+                        sharepreference.getInt("food" + i + "", 0),
+                        sharepreference.getInt("foodquantity" + i + "", 0));
             }
 
             else if(cmenuquantity == 0 && jmenuquantity != 0)
             {
                 DefineTotal definefood = new DefineTotal();
-                definefood.defineTotal(total, food, i + jmenuquantity, sharepreference.getInt("food" + i + "", 0), sharepreference.getInt("foodquantity" + i + "", 0));
+                definefood.defineTotal(total, food, i + jmenuquantity,
+                        sharepreference.getInt("food" + i + "", 0),
+                        sharepreference.getInt("foodquantity" + i + "", 0));
             }
 
             else
             {
                 DefineTotal definefood = new DefineTotal();
-                definefood.defineTotal(total, food, i + cmenuquantity + jmenuquantity, sharepreference.getInt("food" + i + "", 0), sharepreference.getInt("foodquantity" + i + "", 0));
+                definefood.defineTotal(total, food, i + cmenuquantity + jmenuquantity,
+                        sharepreference.getInt("food" + i + "", 0),
+                        sharepreference.getInt("foodquantity" + i + "", 0));
             }
-
-            /*total[i] = food[sharepreference.getInt("food" + i + "", 0)];
-            total[i].quantity = sharepreference.getInt("foodquantity" + i + "", 0);*/
         }
-
-        /*for(int i = sharepreference.getInt("total",0); i < sharepreference.getInt("total",0) + cmenuquantity; i++)
-        {
-            total[i] = coffee[sharepreference.getInt("coffee" + i + "", 0)];
-            total[i].quantity = sharepreference.getInt("coffeequantity" + i + "", 0);
-        }
-
-        for(int i = sharepreference.getInt("total",0); i < sharepreference.getInt("total",0) + jmenuquantity; i++)
-        {
-            total[i] = juice[sharepreference.getInt("juice" + i + "", 0)];
-            total[i].quantity = sharepreference.getInt("juicequantity" + i + "", 0);
-        }
-
-        for(int i = sharepreference.getInt("total",0); i < sharepreference.getInt("total",0) + fmenuquantity; i++)
-        {
-            total[i] = food[sharepreference.getInt("food" + i + "", 0)];
-            total[i].quantity = sharepreference.getInt("foodquantity" + i + "", 0);
-        }
-
-        if(50 < totalquantity)
-        {
-            totalquantity = 0;
-        }
-        totalquantity = cmenuquantity + jmenuquantity + fmenuquantity;
-        editor.putInt("total", totalquantity);
-        editor.commit();*/
 
         //리스트 불러오기
-        ListView listView = findViewById(R.id.list_view);
-        FinalOrder order = new FinalOrder(this, R.layout.shoppingcart, total);
+        final ListView listView = findViewById(R.id.list_view);
+        final FinalOrder order = new FinalOrder(this, R.layout.shoppingcart, total);
         listView.setAdapter(order);
 
+        Button clearcart = findViewById(R.id.clearcart);
+        clearcart.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                editor.clear();
+                editor.commit();
+                Intent intent = new Intent(ShopBasket.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

@@ -19,8 +19,8 @@ public class CoffeeMenu extends AppCompatActivity
         setContentView(R.layout.menu);
 
         final ListView listView = findViewById(R.id.list_view);
-        final SharedPreferences sharepreference = getSharedPreferences("cart", MODE_PRIVATE);
-        final SharedPreferences.Editor editor = sharepreference.edit();
+        final SharedPreferences sharecoffee = getSharedPreferences("cart", MODE_PRIVATE);
+        final SharedPreferences.Editor editor = sharecoffee.edit();
 
         final Shop c1 = new Shop(R.drawable.camericano, "아메리카노", 0);
         final Shop c2 = new Shop(R.drawable.ccafemoca, "카페모카", 0);
@@ -58,11 +58,6 @@ public class CoffeeMenu extends AppCompatActivity
                 editor.putInt("cq", cmenuquantity);
                 editor.commit();
 
-                if(cmenuquantity == 0)
-                {
-                    editor.clear();
-                    editor.commit();
-                }
                 startActivity(basket);
             }
         });
