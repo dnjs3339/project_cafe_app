@@ -10,31 +10,100 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="15">
+        android:layout_weight="10">
 
         <ListView
             android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></ListView>
 
-        <Button
-            android:id="@+id/clearcart"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:background="@drawable/emptycart"
-            android:layout_gravity="bottom|right"/>
-
     </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/gocoffee"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:background="@drawable/dcoffee"/>
+
+        <Button
+            android:id="@+id/gojuice"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:background="@drawable/djuice"/>
+
+        <Button
+            android:id="@+id/gofood"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:background="@drawable/dfood"/>
+
+        <Button
+            android:id="@+id/clearcart"
+            android:layout_width="0dp"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:background="@drawable/emptycart" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
         android:layout_weight="1">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:text="가격 :"
+                    android:textSize="20dp"
+                    android:gravity="center" />
+
+                <TextView
+                    android:id="@+id/cost"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:text="0"
+                    android:gravity="right|center_vertical"
+                    android:layout_weight="3"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:textSize="20dp"
+                    android:text="원"
+                    android:gravity="left|center_vertical"
+                    android:layout_weight="1"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
         <Button
             android:id="@+id/goOrder"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             android:layout_gravity="bottom"
             android:background="#af0000"
             android:text="주문하기"/>

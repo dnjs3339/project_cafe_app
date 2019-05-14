@@ -5,8 +5,10 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 public class JuiceMenu extends AppCompatActivity
 {
@@ -19,23 +21,38 @@ public class JuiceMenu extends AppCompatActivity
         setContentView(R.layout.menu);
 
         final ListView listView = findViewById(R.id.list_view);
-        final SharedPreferences sharejuice = getSharedPreferences("cart", MODE_PRIVATE);
+        final SharedPreferences sharejuice = getSharedPreferences("cart", MODE_WORLD_READABLE|MODE_WORLD_WRITEABLE);
         final SharedPreferences.Editor editor = sharejuice.edit();
 
-        final Shop j1 = new Shop(R.drawable.jchocolatecreamfurapuccino, "초콜렛 크림 프라푸치노", 0);
-        final Shop j2 = new Shop(R.drawable.jwhitechocolatefurapuccino, "화이트 초코 프라푸치노", 0);
-        final Shop j3 = new Shop(R.drawable.jgreentea, "아이스 그린 티", 0);
-        final Shop j4 = new Shop(R.drawable.jlemonminttea, "레몬 민트 차", 0);
-        final Shop j5 = new Shop(R.drawable.jmangoblended, "망고 블랜디드", 0);
-        final Shop j6 = new Shop(R.drawable.jpinkjamongpizio, "핑크 자몽 피지오", 0);
-        final Shop j7 = new Shop(R.drawable.jstrawberryyogurtblended, "딸기 요거트 블랜디드", 0);
-        final Shop j8 = new Shop(R.drawable.jabocadoblended, "아보카도 블랜디드", 0);
-        final Shop[] juice = {j1,j2,j3,j4,j5,j6,j7,j8};
+        final Order j1 = new Order(R.drawable.jchocolatecreamfurapuccino, "초콜렛 크림 프라푸치노", 0, 5100);
+        final Order j2 = new Order(R.drawable.jwhitechocolatefurapuccino, "화이트 초코 프라푸치노", 0, 5700);
+        final Order j3 = new Order(R.drawable.jgreentea, "아이스 그린 티", 0, 5900);
+        final Order j4 = new Order(R.drawable.jlemonminttea, "레몬 민트 티", 0, 5600);
+        final Order j5 = new Order(R.drawable.jmangoblended, "망고 블랜디드", 0, 5000);
+        final Order j6 = new Order(R.drawable.jpinkjamongpizio, "핑크 자몽 피지오", 0, 6300);
+        final Order j7 = new Order(R.drawable.jstrawberryyogurtblended, "딸기 요거트 블랜디드", 0, 6100);
+        final Order j8 = new Order(R.drawable.jabocadoblended, "아보카도 블랜디드", 0, 6900);
+        final Order[] juice = {j1,j2,j3,j4,j5,j6,j7,j8};
 
+        TextView textCoffeeTotal = findViewById(R.id.coffeetotalcost);
         final Intent basket = new Intent(JuiceMenu.this, ShopBasket.class);
 
-        JuiceCustom adapter = new JuiceCustom(this, R.layout.basket, juice);
+        JuiceCustom adapter = new JuiceCustom(this, R.layout.basket, juice, textCoffeeTotal);
         listView.setAdapter(adapter);
+        /*final TextView textView = findViewById(R.id.coffeetotaltcost);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
+            {
+                int totaljuicecost = 0;
+                for(int i = 0; i < juice.length; i++)
+                {
+                    totaljuicecost += juice[i].cost;
+                }
+                textView.setText(totaljuicecost);
+            }
+        });*/
 
         Button goCart = findViewById(R.id.goCart);
         goCart.setOnClickListener(new View.OnClickListener()
@@ -60,6 +77,5 @@ public class JuiceMenu extends AppCompatActivity
                 startActivity(basket);
             }
         });
-
     }
 }

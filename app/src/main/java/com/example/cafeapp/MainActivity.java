@@ -16,7 +16,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.category);
 
-
         SharedPreferences sharepreference = getSharedPreferences("cart", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharepreference.edit();
         editor.clear();

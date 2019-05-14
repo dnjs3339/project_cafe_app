@@ -1,5 +1,7 @@
 package com.example.cafeapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +14,15 @@ public class JuiceCustom extends BaseAdapter
 {
     JuiceMenu  jm;
     int layout;
-    Shop[] data;
+    Order[] data;
+    TextView textCoffee;
 
-    JuiceCustom(JuiceMenu jm, int layout, Shop[] datas)
+    JuiceCustom(JuiceMenu jm, int layout, Order[] datas, TextView textCoffee)
     {
         this.jm = jm;
         this.layout = layout;
         this.data = datas;
+        this.textCoffee = textCoffee;
     }
 
     @Override
@@ -33,7 +37,7 @@ public class JuiceCustom extends BaseAdapter
         View view = inflater.inflate(layout, null);
 
         //버튼 누르면 박스 안 숫자 바꿔주기
-        final Shop currentShop = data[position];
+        final Order currentShop = data[position];
         final TextView quantity = view.findViewById(R.id.num);
 
         Button btnUp = view.findViewById(R.id.up);
@@ -42,8 +46,11 @@ public class JuiceCustom extends BaseAdapter
             @Override
             public void onClick(View v)
             {
+                int total = Integer.parseInt(textCoffee.getText().toString());
                 currentShop.quantity++;
                 quantity.setText(String.valueOf(currentShop.quantity));
+                total += currentShop.cost;
+                textCoffee.setText(String.valueOf(total));
             }
         });
 
@@ -55,8 +62,11 @@ public class JuiceCustom extends BaseAdapter
             {
                 if(0 < currentShop.quantity)
                 {
+                    int total = Integer.parseInt(textCoffee.getText().toString());
                     currentShop.quantity--;
                     quantity.setText(String.valueOf(currentShop.quantity));
+                    total -= currentShop.cost;
+                    textCoffee.setText(String.valueOf(total));
                 }
             }
         });
@@ -68,6 +78,9 @@ public class JuiceCustom extends BaseAdapter
         //리스트별 이름 바꿔주기
         TextView textView = view.findViewById(R.id.coffeeName);
         textView.setText(data[position].name);
+
+        TextView costView = view.findViewById(R.id.coffeecost);
+        costView.setText(String.valueOf(data[position].cost));
 
         return view;
     }

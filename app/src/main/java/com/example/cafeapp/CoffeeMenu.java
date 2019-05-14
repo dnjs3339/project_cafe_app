@@ -22,15 +22,15 @@ public class CoffeeMenu extends AppCompatActivity
         final SharedPreferences sharecoffee = getSharedPreferences("cart", MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharecoffee.edit();
 
-        final Shop c1 = new Shop(R.drawable.camericano, "아메리카노", 0);
-        final Shop c2 = new Shop(R.drawable.ccafemoca, "카페모카", 0);
-        final Shop c3 = new Shop(R.drawable.ccapuchino, "카푸치노", 0);
-        final Shop c4 = new Shop(R.drawable.ccaramelmacchiato, "캐러멜 마키아또", 0);
-        final Shop c5 = new Shop(R.drawable.ccoldbrew, "콜드 브루", 0);
-        final Shop c6 = new Shop(R.drawable.cespresso, "에스프레소", 0);
-        final Shop c7 = new Shop(R.drawable.cnightrochocolat, "나이트로 쇼콜라", 0);
-        final Shop c8 = new Shop(R.drawable.cnightrochocolatcloud, "나이트로 쇼콜라 클라우드", 0);
-        final Shop[] coffee ={c1,c2,c3,c4,c5,c6,c7,c8};
+        final Order c1 = new Order(R.drawable.camericano, "아메리카노", 0, 4100);
+        final Order c2 = new Order(R.drawable.ccafemoca, "카페모카", 0, 5100);
+        final Order c3 = new Order(R.drawable.ccapuchino, "카푸치노", 0, 4600);
+        final Order c4 = new Order(R.drawable.ccaramelmacchiato, "캐러멜 마키아또", 0, 5600);
+        final Order c5 = new Order(R.drawable.ccoldbrew, "콜드 브루", 0, 4500);
+        final Order c6 = new Order(R.drawable.cespresso, "에스프레소", 0, 3600);
+        final Order c7 = new Order(R.drawable.cnightrochocolat, "나이트로 쇼콜라", 0, 6100);
+        final Order c8 = new Order(R.drawable.cnightrochocolatcloud, "나이트로 쇼콜라 클라우드", 0, 6100);
+        final Order[] coffee ={c1,c2,c3,c4,c5,c6,c7,c8};
 
         final Intent basket = new Intent(CoffeeMenu.this, ShopBasket.class);
 

@@ -8,64 +8,44 @@
     android:orientation="vertical"
     android:background="@drawable/teria">
 
-    <LinearLayout
-        android:layout_weight="2.8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
         <LinearLayout
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+         android:gravity="center"
+         android:layout_weight="1"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
 
-            <Button
-                android:background="@drawable/coffe"
-                android:id="@+id/coffee"
-                android:layout_gravity="bottom"
-                android:text=""
-                android:layout_margin="5dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+         <Button
+             android:background="@drawable/dcoffee"
+             android:id="@+id/coffee"
+             android:layout_width="0dp"
+             android:layout_height="70dp"
+             android:layout_weight="1"
+             android:layout_gravity="bottom"/>
 
-        <LinearLayout
-            android:gravity="center"
-            android:layout_weight="1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <Button
-                android:background="@drawable/beverage"
-                android:id="@+id/juice"
-                android:layout_gravity="top"
-                android:text=""
-                android:layout_margin="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+         <Button
+             android:background="@drawable/djuice"
+             android:id="@+id/juice"
+             android:layout_width="0dp"
+             android:layout_height="70dp"
+             android:layout_weight="1"
+             android:layout_gravity="bottom"/>
 
-            <Button
-                android:background="@drawable/cake"
-                android:id="@+id/food"
-                android:layout_gravity="top"
-                android:text=""
-                android:layout_margin="10dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </LinearLayout>
+         <Button
+             android:background="@drawable/dfood"
+             android:id="@+id/food"
+             android:layout_width="0dp"
+             android:layout_height="70dp"
+             android:layout_weight="1"
+             android:layout_gravity="bottom"/>
 
-        <FrameLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right">
+         <Button
+             android:id="@+id/pullcart"
+             android:layout_width="0dp"
+             android:layout_height="70dp"
+             android:layout_weight="1"
+             android:layout_gravity="bottom"
+             android:background="@drawable/pullcart"/>
 
-            <Button
-                android:id="@+id/pullcart"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:background="@drawable/pullcart"/>
-
-        </FrameLayout>
     </LinearLayout>
 </LinearLayout>

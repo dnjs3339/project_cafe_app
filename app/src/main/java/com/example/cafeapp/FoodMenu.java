@@ -21,15 +21,15 @@ public class FoodMenu extends AppCompatActivity
         final SharedPreferences sharefood = getSharedPreferences("cart", MODE_PRIVATE);       // 밑의 것을 쓰기 위해 사용
         final SharedPreferences.Editor editor = sharefood.edit();                                     //해당 값을 앱에 저장
 
-        final Shop f1 = new Shop(R.drawable.fbagle, "허니 버터 베이글", 0);
-        final Shop f2 = new Shop(R.drawable.fcake, "치즈 조각 케이크", 0);
-        final Shop f3 = new Shop(R.drawable.fchocolatemurffin, "아몬드 초코 머핀", 0);
-        final Shop f4 = new Shop(R.drawable.fcroissant, "녹차 딸기 크로와상", 0);
-        final Shop f5 = new Shop(R.drawable.fpuding, "바닐라 푸딩", 0);
-        final Shop f6 = new Shop(R.drawable.frole, "소시지 롤", 0);
-        final Shop f7 = new Shop(R.drawable.fscone, "클레식 스콘", 0);
-        final Shop f8 = new Shop(R.drawable.fstick, "클레식 스틱", 0);
-        final Shop[] food ={f1,f2,f3,f4,f5,f6,f7,f8};
+        final Order f1 = new Order(R.drawable.fbagle, "허니 버터 베이글", 0, 2800);
+        final Order f2 = new Order(R.drawable.fcake, "치즈 조각 케이크", 0, 5500);
+        final Order f3 = new Order(R.drawable.fchocolatemurffin, "아몬드 초코 머핀", 0, 3300);
+        final Order f4 = new Order(R.drawable.fcroissant, "녹차 딸기 크로와상", 0, 4900);
+        final Order f5 = new Order(R.drawable.fpuding, "바닐라 푸딩", 0, 3300);
+        final Order f6 = new Order(R.drawable.frole, "소시지 롤", 0, 3300);
+        final Order f7 = new Order(R.drawable.fscone, "클레식 스콘", 0, 3300);
+        final Order f8 = new Order(R.drawable.fstick, "클레식 스틱", 0, 4900);
+        final Order[] food ={f1,f2,f3,f4,f5,f6,f7,f8};
 
         final Intent basket = new Intent(FoodMenu.this, ShopBasket.class);
 

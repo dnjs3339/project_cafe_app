@@ -1,14 +1,17 @@
 package com.example.cafeapp;
 
-public class Shop           //한 칸당 요소(이미지, 이름, 수량조절)
+public class Order
 {
     int img;
     String name;
     int quantity;
+    int cost;
 
-    Shop(int img, String name, int quantity) {
+    Order(int img, String name, int quantity, int cost)
+    {
         this.img = img;
         this.name = name;
         this.quantity = quantity;
+        this.cost = cost;
     }
 }

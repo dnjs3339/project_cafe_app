@@ -11,10 +11,10 @@ public class FinalOrder extends BaseAdapter
 {
     public ShopBasket sb;
     public int layout;
-    public Shop[] data;
+    public Order[] data;
 
     public
-    FinalOrder(ShopBasket sb, int layout, Shop[] data)
+    FinalOrder(ShopBasket sb, int layout, Order[] data)
     {
         this.sb = sb;
         this.layout = layout;
