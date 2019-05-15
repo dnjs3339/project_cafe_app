@@ -8,20 +8,29 @@
     android:orientation="vertical"
     android:background="@drawable/teria">
 
+    <Button
+        android:text="내역서"
+        android:id="@+id/sales"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_weight="1"
+        android:layout_margin="10dp"
+        android:layout_gravity="right"
+        android:background="#005f00"/>
+
         <LinearLayout
          android:gravity="center"
          android:layout_weight="1"
          android:layout_width="match_parent"
          android:layout_height="match_parent">
 
-         <Button
-             android:background="@drawable/dcoffee"
-             android:id="@+id/coffee"
-             android:layout_width="0dp"
-             android:layout_height="70dp"
-             android:layout_weight="1"
-             android:layout_gravity="bottom"/>
-
+            <Button
+                android:background="@drawable/dcoffee"
+                android:id="@+id/coffee"
+                android:layout_width="0dp"
+                android:layout_height="70dp"
+                android:layout_weight="1"
+                android:layout_gravity="bottom"/>
 
          <Button
              android:background="@drawable/djuice"

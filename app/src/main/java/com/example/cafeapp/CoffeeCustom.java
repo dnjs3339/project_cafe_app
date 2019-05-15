@@ -13,12 +13,14 @@ public class CoffeeCustom extends BaseAdapter
     CoffeeMenu  cm;
     int layout;
     Order[] data;
+    TextView textCoffee;
 
-    CoffeeCustom(CoffeeMenu cm, int layout, Order[] datas)
+    CoffeeCustom(CoffeeMenu cm, int layout, Order[] datas, TextView textCoffee)
     {
         this.cm = cm;
         this.layout = layout;
         this.data = datas;
+        this.textCoffee = textCoffee;;
     }
 
     @Override
@@ -44,8 +46,11 @@ public class CoffeeCustom extends BaseAdapter
             @Override
             public void onClick(View v)
             {
+                int total = Integer.parseInt(textCoffee.getText().toString());
                 currentShop.quantity++;
                 quantity.setText(String.valueOf(currentShop.quantity));
+                total += currentShop.cost;
+                textCoffee.setText(String.valueOf(total));
             }
         });
 
@@ -57,8 +62,11 @@ public class CoffeeCustom extends BaseAdapter
             {
                 if(0 < currentShop.quantity)
                 {
+                    int total = Integer.parseInt(textCoffee.getText().toString());
                     currentShop.quantity--;
                     quantity.setText(String.valueOf(currentShop.quantity));
+                    total -= currentShop.cost;
+                    textCoffee.setText(String.valueOf(total));
                 }
             }
         });

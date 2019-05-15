@@ -13,12 +13,14 @@ public class FoodCustom extends BaseAdapter
     FoodMenu  fm;
     int layout;
     Order[] data;
+    TextView textCoffee;
 
-    FoodCustom(FoodMenu fm, int layout, Order[] datas)
+    FoodCustom(FoodMenu fm, int layout, Order[] datas, TextView textCoffee)
     {
         this.fm = fm;
         this.layout = layout;
         this.data = datas;
+        this.textCoffee = textCoffee;
     }
 
     @Override
@@ -43,8 +45,11 @@ public class FoodCustom extends BaseAdapter
             @Override
             public void onClick(View v)
             {
+                int total = Integer.parseInt(textCoffee.getText().toString());
                 currentShop.quantity++;
                 quantity.setText(String.valueOf(currentShop.quantity));
+                total += currentShop.cost;
+                textCoffee.setText(String.valueOf(total));
             }
         });
 
@@ -56,8 +61,11 @@ public class FoodCustom extends BaseAdapter
             {
                 if(0 < currentShop.quantity)
                 {
+                    int total = Integer.parseInt(textCoffee.getText().toString());
                     currentShop.quantity--;
                     quantity.setText(String.valueOf(currentShop.quantity));
+                    total -= currentShop.cost;
+                    textCoffee.setText(String.valueOf(total));
                 }
             }
         });
