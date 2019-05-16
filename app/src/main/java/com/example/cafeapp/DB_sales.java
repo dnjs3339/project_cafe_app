@@ -3,6 +3,7 @@ package com.example.cafeapp;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -29,66 +30,49 @@ public class DB_sales extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.sales_real);
 
+        //지출 내역 리스트뷰로 보여주기
         dbHelper = new DBHelper(getApplicationContext());
-        listView = (ListView) findViewById(R.id.sales_listView);
+        listView = findViewById(R.id.sales_listView);
         adapter = new Sales_ListViewAdapter(this, R.layout.sales_list_view);
 
-        //누적하자
-        SharedPreferences sharepreference = getSharedPreferences("cart", MODE_PRIVATE);
-        SharedPreferences.Editor edit = sharepreference.edit();
         //총매출
-        int sales_tot = sharepreference.getInt("cost", 0);
-        int acc_sales = sharepreference.getInt("acc_sales", 0);
-        acc_sales += sales_tot;
-        edit.putInt("acc_sales", acc_sales);
-        edit.commit();
+        int t_cost = dbHelper.sum();
 
-        Log.d("cost", String.valueOf(acc_sales));
-        TextView txtv_sales_tot = findViewById(R.id.sales_total);
-        txtv_sales_tot.setText(String.valueOf(acc_sales));
+        TextView text_sales_tot = findViewById(R.id.sales_total);
+        text_sales_tot.setText(String.valueOf(t_cost));
 
         listView.setAdapter(adapter);
+        showData();
 
+        // 총 매출 클리어
         Button btn_clr = findViewById(R.id.sales_clr);
         btn_clr.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                TextView text_sales_tot = findViewById(R.id.sales_total);
+                text_sales_tot.setText("0");                                        //
+
                 SQLiteDatabase db;
                 String sql;
                 db = dbHelper.getWritableDatabase();
                 sql="DELETE FROM sales";
                 db.execSQL(sql);
-                Log.d("sql","delet all!");
                 adapter.notifyDataSetChanged();
-                Toast.makeText(getBaseContext(),"주문 완료",Toast.LENGTH_SHORT).show();
                 showData();
             }
         });
-        showData();
 
+        //메인 화면 돌아가기
         Button btn_gomain = findViewById(R.id.gotomain);
         btn_gomain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(DB_sales.this, DB_sales.class);
+                Intent intent = new Intent(DB_sales.this, MainActivity.class);
                 startActivity(intent);
             }
         });
-        /*
-        Log.d("test", order.data[0].name);
-        Log.d("testname", String.valueOf(order.data[0].quantity));
-        Log.d("testname", String.valueOf(order.data[0].cost));*/
-
-        /*Button btn_ok = (Button) findViewById(R.id.ok);
-        btn_ok.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-               EditText title = (EditText) findViewById(R.id.title);
-                EditText cost = (EditText) findViewById(R.id.cost);
-                dbHelper.insert(title.getText().toString(), cost.getText().toString());
-                showData();
-            }*/
     }
+    //리스트 보여주는 함수
     private void showData() {
         adapter.setList(dbHelper.select());
         adapter.notifyDataSetChanged();

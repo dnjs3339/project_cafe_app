@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class JuiceCustom extends BaseAdapter
+public class JuiceCustom extends BaseAdapter                //쥬스의 기본
 {
     JuiceMenu  jm;
     int layout;

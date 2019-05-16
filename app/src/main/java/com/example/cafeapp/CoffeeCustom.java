@@ -8,14 +8,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class CoffeeCustom extends BaseAdapter
+public class CoffeeCustom extends BaseAdapter   //커피 메뉴 리스트 만들기
 {
     CoffeeMenu  cm;
     int layout;
     Order[] data;
     TextView textCoffee;
 
-    CoffeeCustom(CoffeeMenu cm, int layout, Order[] datas, TextView textCoffee)
+    CoffeeCustom(CoffeeMenu cm, int layout, Order[] datas, TextView textCoffee)     //커피 메뉴 생성자
     {
         this.cm = cm;
         this.layout = layout;
@@ -39,8 +39,7 @@ public class CoffeeCustom extends BaseAdapter
         //버튼 누르면 박스 안 숫자 바꿔주기
         final Order currentShop = data[position];
         final TextView quantity = view.findViewById(R.id.num);
-
-        Button btnUp = view.findViewById(R.id.up);
+        Button btnUp = view.findViewById(R.id.up);                              // 버튼 클릭시 수량 올라감
         btnUp.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -53,8 +52,7 @@ public class CoffeeCustom extends BaseAdapter
                 textCoffee.setText(String.valueOf(total));
             }
         });
-
-        final Button btnDown = view.findViewById(R.id.down);
+        final Button btnDown = view.findViewById(R.id.down);                    // 버튼 클릭시 수량 내려감
         btnDown.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -72,14 +70,14 @@ public class CoffeeCustom extends BaseAdapter
         });
 
         //리스트별 이미지 바꿔주기
-        ImageView img = view.findViewById(R.id.coffee);
+        ImageView img = view.findViewById(R.id.coffee);                     //커피 이미지 보여주기
         img.setImageResource(data[position].img);
 
         //리스트별 이름 바꿔주기
-        TextView textView = view.findViewById(R.id.coffeeName);
+        TextView textView = view.findViewById(R.id.coffeeName);             //커피 이름 보여주기
         textView.setText(data[position].name);
 
-        TextView costView = view.findViewById(R.id.coffeecost);
+        TextView costView = view.findViewById(R.id.coffeecost);             //커피 가격 보여주기
         costView.setText(String.valueOf(data[position].cost));
 
         return view;

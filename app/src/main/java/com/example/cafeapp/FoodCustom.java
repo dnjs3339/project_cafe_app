@@ -8,14 +8,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class FoodCustom extends BaseAdapter
+public class FoodCustom extends BaseAdapter                 //디저트 기본 리스트
 {
     FoodMenu  fm;
     int layout;
     Order[] data;
     TextView textCoffee;
 
-    FoodCustom(FoodMenu fm, int layout, Order[] datas, TextView textCoffee)
+    FoodCustom(FoodMenu fm, int layout, Order[] datas, TextView textCoffee)         //텍스트 뷰에는 총 금액이 나올 예정
     {
         this.fm = fm;
         this.layout = layout;
@@ -26,7 +26,7 @@ public class FoodCustom extends BaseAdapter
     @Override
     public int getCount()
     {
-        return data.length;
+        return data.length;     //데이터의 길이만큼 반복
     }
 
     @Override
@@ -39,7 +39,7 @@ public class FoodCustom extends BaseAdapter
         final Order currentShop = data[position];
         final TextView quantity = view.findViewById(R.id.num);
 
-        Button btnUp = view.findViewById(R.id.up);
+        Button btnUp = view.findViewById(R.id.up);                  //up버튼 누르면 수량 증가
         btnUp.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -53,7 +53,7 @@ public class FoodCustom extends BaseAdapter
             }
         });
 
-        final Button btnDown = view.findViewById(R.id.down);
+        final Button btnDown = view.findViewById(R.id.down);        //down버튼 누르면 수량 감소
         btnDown.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -78,6 +78,7 @@ public class FoodCustom extends BaseAdapter
         TextView textView = view.findViewById(R.id.coffeeName);
         textView.setText(data[position].name);
 
+        //음식 부분에서 내야 할 총 금액
         TextView costView = view.findViewById(R.id.coffeecost);
         costView.setText(String.valueOf(data[position].cost));
 

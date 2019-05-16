@@ -13,12 +13,13 @@ import java.util.Map;
 
 public class DBHelper extends SQLiteOpenHelper {
 
+    // DB부분에 순번, 이름, 가격, 날짜 가져오기
     public DBHelper(Context context) {
         super(context, "DB_sales.db", null, 1);
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
-        Log.e("DBHelper", "onCreate");
+      //  Log.e("DBHelper", "onCreate");
         db.execSQL("DROP TABLE IF EXISTS sales;");
         db.execSQL("CREATE TABLE sales (" +
                 "sales_id INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -28,6 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 ");");
     }
 
+    // 내가 주문 한 것들 DB부분에 순번, 이름, 가격, 날짜 추가하기
     public void insert(String title, String cost) {
         Log.e("helper", "insert");
         SQLiteDatabase db = getWritableDatabase();
@@ -36,6 +38,19 @@ public class DBHelper extends SQLiteOpenHelper {
         db.close();
     }
 
+    //총 매출 누적
+    public int sum() {
+        int sum = 0;
+        SQLiteDatabase db = getReadableDatabase();
+        Cursor cursor = db.rawQuery("SELECT SUM(sales_cost) FROM sales", null);
+        if (cursor.moveToNext()) {
+            sum = cursor.getInt(0);
+        }
+        db.close();
+        return sum;
+    }
+
+    //특정 DB의 순번, 이름, 가격, 날짜 선택하기
     public List<Map<String, Object>> select() {
         Log.e("helper", "select");
         List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();

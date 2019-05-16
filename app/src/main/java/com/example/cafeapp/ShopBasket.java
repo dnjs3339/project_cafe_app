@@ -66,9 +66,9 @@ public class ShopBasket extends AppCompatActivity
         final SharedPreferences sharepreference = getSharedPreferences("cart", MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharepreference.edit();
 
-        int cmenuquantity = sharepreference.getInt("cq", 0);
-        int jmenuquantity = sharepreference.getInt("jq", 0);
-        int fmenuquantity = sharepreference.getInt("fq", 0);
+        int cmenuquantity = sharepreference.getInt("cq", 0);                //선택한 커피 메뉴 수
+        int jmenuquantity = sharepreference.getInt("jq", 0);                //선택한 쥬스 메뉴 수
+        int fmenuquantity = sharepreference.getInt("fq", 0);                //선택한 음식 메뉴 수
 
         final Order[] total = new Order[cmenuquantity + jmenuquantity + fmenuquantity];            //배열 초기화
 
@@ -79,6 +79,7 @@ public class ShopBasket extends AppCompatActivity
         //if 문으로 제어하기 if (0 < cm && jm == 0 && fm == 0) 처럼
         //함수하나 만들어서 변수만 집어넣으면 알아서 출력되게 만들기
 
+        //밑의 if문의 이유는 메뉴가 중첩이 되는 상황이 주로 발생하여 예외처리를 해준것이다.
 
         for(int i = 0; i < cmenuquantity; i++)                                                 // 선택한 커피 메뉴만큼 반복하기
         {
@@ -88,7 +89,7 @@ public class ShopBasket extends AppCompatActivity
                     sharepreference.getInt("coffeequantity" + i + "", 0));      // 선택한 커피 메뉴의 수량을 total.quantity 에 넣기
         }
 
-        for(int i = 0; i < jmenuquantity; i++)
+        for(int i = 0; i < jmenuquantity; i++)                                                  // 선택한 쥬스 메뉴만큼 반복하기
         {
             if(cmenuquantity != 0)
             {
@@ -107,7 +108,7 @@ public class ShopBasket extends AppCompatActivity
             }
         }
 
-        for(int i = 0; i < fmenuquantity; i++)
+        for(int i = 0; i < fmenuquantity; i++)                                                  // 선택한 음식 메뉴만큼 반복하기
         {
             if(cmenuquantity == 0 && jmenuquantity == 0)
             {
@@ -153,14 +154,11 @@ public class ShopBasket extends AppCompatActivity
 
         Button btn_order = findViewById(R.id.goOrder);
 
-        //DB에 데이터 저장
-        for(int i=0; i<total.length; i++)
-        dbHelper.insert(order.data[i].name, String.valueOf(order.data[i].cost));
-
         btn_order.setOnClickListener(new View.OnClickListener() {
             //db에 저장
             @Override
             public void onClick(View v) {
+
             for(int i=0; i< total.length; i++ )
             {
                 //String으로 묶어서 send
@@ -171,6 +169,7 @@ public class ShopBasket extends AppCompatActivity
                 String str5 = order.data[i].ename;
                 String res = str1.concat(str2).concat(str3).concat(str4).concat(str5);
                 BluetoothActivity.bt.send(res, true);       //static으로 메모리에 할당된 BluetoothActivtity의 객체를 주소로 직접 접근하여 send 메소드 실행
+                dbHelper.insert(order.data[i].name, String.valueOf(order.data[i].cost));        // DB로 주문 메뉴 보내기
             }
                 Toast.makeText(getApplicationContext(), "결제가 완료 됐습니다", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(ShopBasket.this, DB_sales.class);
@@ -191,7 +190,7 @@ public class ShopBasket extends AppCompatActivity
         editor.commit();
 
         Button goCoffee = findViewById(R.id.gocoffee);
-        goCoffee.setOnClickListener(new View.OnClickListener()
+        goCoffee.setOnClickListener(new View.OnClickListener()      //쇼핑카트에서 커피 메뉴로 돌아가기
         {
             @Override
             public void onClick(View v)
@@ -202,7 +201,7 @@ public class ShopBasket extends AppCompatActivity
         });
 
         Button goJuice = findViewById(R.id.gojuice);
-        goJuice.setOnClickListener(new View.OnClickListener()
+        goJuice.setOnClickListener(new View.OnClickListener()       //쇼핑카트에서 쥬스 메뉴로 돌아가기
         {
             @Override
             public void onClick(View v)
@@ -213,7 +212,7 @@ public class ShopBasket extends AppCompatActivity
         });
 
         Button goFood = findViewById(R.id.gofood);
-        goFood.setOnClickListener(new View.OnClickListener()
+        goFood.setOnClickListener(new View.OnClickListener()        //쇼핑카트에서 음식 메뉴로 돌아가기
         {
             @Override
             public void onClick(View v)
@@ -224,12 +223,12 @@ public class ShopBasket extends AppCompatActivity
         });
 
         Button clearCart = findViewById(R.id.clearcart);
-        clearCart.setOnClickListener(new View.OnClickListener()
+        clearCart.setOnClickListener(new View.OnClickListener()     //쇼핑카트비우기
         {
             @Override
             public void onClick(View v)
             {
-                editor.clear();
+                editor.clear();                                     //저장 되어있는 모든 것을 초기화
                 editor.commit();
                 Intent intent = new Intent(ShopBasket.this, MainActivity.class);
                 startActivity(intent);

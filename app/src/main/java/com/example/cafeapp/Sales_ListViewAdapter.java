@@ -37,14 +37,15 @@ public class Sales_ListViewAdapter extends BaseAdapter {
             convertView = inflater.inflate(layout, null);
         }
 
-        TextView id = (TextView) convertView.findViewById(R.id.sales_id);
-        TextView title = (TextView) convertView.findViewById(R.id.sales_title);
-        TextView cost = (TextView) convertView.findViewById(R.id.sales_cost);
-        TextView wDate = (TextView) convertView.findViewById(R.id.sales_w_data);
-        id.setText((Integer)list.get(position).get("id") + "");
-        cost.setText((String) list.get(position).get("cost"));
-        title.setText((String)list.get(position).get("title"));
-        wDate.setText((String)list.get(position).get("w_date"));
+        TextView id = convertView.findViewById(R.id.sales_id);
+        TextView title = convertView.findViewById(R.id.sales_title);
+        TextView cost = convertView.findViewById(R.id.sales_cost);
+        TextView wDate = convertView.findViewById(R.id.sales_w_data);
+
+        id.setText((Integer)list.get(position).get("id") + "");             //구매 순번 표시
+        cost.setText((String) list.get(position).get("cost"));              //구매 금액 표시
+        title.setText((String)list.get(position).get("title"));             //구매 이름 표시
+        wDate.setText((String)list.get(position).get("w_date"));            //구매 날짜 표시
         return convertView;
     }
 

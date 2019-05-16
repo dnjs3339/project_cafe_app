@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.category);
 
+        //혹시 모를 기존의 남은 데이터들 지우기
         SharedPreferences sharepreference = getSharedPreferences("cart", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharepreference.edit();
         editor.clear();
@@ -71,7 +72,7 @@ public class MainActivity extends AppCompatActivity
         btn_sales.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, DB_sales.class);
+                Intent intent = new Intent(MainActivity.this, DB_sales.class);          //내역서 선택시 지출내역으로 이동
                 startActivity(intent);
             }
         });

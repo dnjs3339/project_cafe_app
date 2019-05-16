@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class CoffeeMenu extends AppCompatActivity
+public class CoffeeMenu extends AppCompatActivity       //CoffeeCustom에서 만든 커피 메뉴 리스트 보여주기
 {
     int cmenuquantity = 0;
 
@@ -19,7 +19,9 @@ public class CoffeeMenu extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
 
+        //리스트로 커피 보여주기
         final ListView listView = findViewById(R.id.list_view);
+        //앱에 수량 저장
         final SharedPreferences sharecoffee = getSharedPreferences("cart", MODE_PRIVATE);
         final SharedPreferences.Editor editor = sharecoffee.edit();
 
@@ -33,14 +35,14 @@ public class CoffeeMenu extends AppCompatActivity
         final Order c8 = new Order(R.drawable.cnightrochocolatcloud, "나이트로 쇼콜라 클라우드", "NightroCC", 0, 6100);
         final Order[] coffee ={c1,c2,c3,c4,c5,c6,c7,c8};
 
-        final Intent basket = new Intent(CoffeeMenu.this, ShopBasket.class);
+        final Intent basket = new Intent(CoffeeMenu.this, ShopBasket.class);        //장바구니로 넘어가기
 
-        TextView textCoffeeTotal = findViewById(R.id.coffeetotalcost);
+        TextView textCoffeeTotal = findViewById(R.id.coffeetotalcost);                             // 커피 총 결제 금액 보여주기
 
-        CoffeeCustom adapter = new CoffeeCustom(this, R.layout.basket, coffee, textCoffeeTotal);
+        CoffeeCustom adapter = new CoffeeCustom(this, R.layout.basket, coffee, textCoffeeTotal);    //CoffeeCustom한거 adapter로 리스트 보여주기
         listView.setAdapter(adapter);
 
-        Button goCart = findViewById(R.id.goCart);
+        Button goCart = findViewById(R.id.goCart);                                  // 장바구니 갈 때 주문을 한 애들만 장바구니로 보내주기
         goCart.setOnClickListener(new View.OnClickListener()
         {
             @Override

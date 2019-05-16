@@ -34,12 +34,12 @@ public class FoodMenu extends AppCompatActivity
 
         final Intent basket = new Intent(FoodMenu.this, ShopBasket.class);
 
-        TextView textCoffeeTotal = findViewById(R.id.coffeetotalcost);
+        TextView textCoffeeTotal = findViewById(R.id.coffeetotalcost);                  // 음식 부분 총 금액 보여주기
 
         FoodCustom adapter = new FoodCustom(this, R.layout.basket, food, textCoffeeTotal);
         listView.setAdapter(adapter);
 
-        Button goCart = findViewById(R.id.goCart);
+        Button goCart = findViewById(R.id.goCart);          //장바구니 버튼 누를 때, 종류 및 수량 넘기기
         goCart.setOnClickListener(new View.OnClickListener()
         {
             @Override

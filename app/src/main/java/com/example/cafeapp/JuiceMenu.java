@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 public class JuiceMenu extends AppCompatActivity
 {
-    int jmenuquantity = 0;
+    int jmenuquantity = 0;          //쥬스 메뉴 선택 수
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,27 +35,13 @@ public class JuiceMenu extends AppCompatActivity
         final Order[] juice = {j1,j2,j3,j4,j5,j6,j7,j8};
 
 
-        TextView textCoffeeTotal = findViewById(R.id.coffeetotalcost);
+        TextView textCoffeeTotal = findViewById(R.id.coffeetotalcost);                                  //선택한 쥬스 메뉴 총 금액
         final Intent basket = new Intent(JuiceMenu.this, ShopBasket.class);
 
-        JuiceCustom adapter = new JuiceCustom(this, R.layout.basket, juice, textCoffeeTotal);
+        JuiceCustom adapter = new JuiceCustom(this, R.layout.basket, juice, textCoffeeTotal);       //쥬스 메뉴 표시하기
         listView.setAdapter(adapter);
-        /*final TextView textView = findViewById(R.id.coffeetotaltcost);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener()
-        {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id)
-            {
-                int totaljuicecost = 0;
-                for(int i = 0; i < juice.length; i++)
-                {
-                    totaljuicecost += juice[i].cost;
-                }
-                textView.setText(totaljuicecost);
-            }
-        });*/
 
-        Button goCart = findViewById(R.id.goCart);
+        Button goCart = findViewById(R.id.goCart);              //장바구니 담기
         goCart.setOnClickListener(new View.OnClickListener()
         {
             @Override
